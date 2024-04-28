@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <string>
+#include <limits>
 #include "Contact.h"
 
 class PhoneBook {

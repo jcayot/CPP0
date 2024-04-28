@@ -2,8 +2,6 @@
 // Created by Jules Cayot on 4/27/24.
 //
 
-#include <iostream>
-
 #include "PhoneBook.h"
 
 PhoneBook::PhoneBook() {
@@ -47,6 +45,7 @@ void PhoneBook::choose_option() {
 int PhoneBook::get_option() {
 	std::string input;
 	std::cin >> input;
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 	if (input == "ADD")
 		return (1);
@@ -68,12 +67,14 @@ void PhoneBook::add_contact() {
 	{
 		std::cout << "Enter contact name : ";
 		std::cin >> name;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	number = "";
 	while (number.empty())
 	{
 		std::cout << "Enter contact number : ";
 		std::cin >> number;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	contacts[n_contact] = Contact(name, number);
 	n_contact++;
@@ -86,6 +87,7 @@ void PhoneBook::search_contact() {
 	{
 		std::cout << "Enter name of existing contact : ";
 		std::cin >> name;
+		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	std::cout << "\n";
 	for (int i = 0; i < 8; i++) {
@@ -99,7 +101,7 @@ void PhoneBook::search_contact() {
 }
 
 void PhoneBook::wait_for_next() {
-	std::cout << "\nDone. Press any key to continue\n";
-	std::getchar();
+	std::cout << "\nDone. Press enter to continue\n";
+	std::cin.get();
 	std::cout << "\n";
 }
