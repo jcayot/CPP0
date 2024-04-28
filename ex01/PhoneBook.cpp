@@ -103,5 +103,6 @@ void PhoneBook::search_contact() {
 void PhoneBook::wait_for_next() {
 	std::cout << "\nDone. Press enter to continue\n";
 	std::cin.get();
+	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << "\n";
 }
