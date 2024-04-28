@@ -14,10 +14,11 @@ private:
 	Contact contacts[8];
 	int n_contact;
 
-	void welcome();
-	int get_option();
-	void add_contact();
-	void search_contact();
+	void	choose_option();
+	void	wait_for_next();
+	int		get_option();
+	void	add_contact();
+	void	search_contact();
 
 public:
 	PhoneBook();

@@ -6,12 +6,42 @@
 
 #include "PhoneBook.h"
 
-void PhoneBook::welcome() {
-	std::cout << "Welcome to PhoneBook\n";
+PhoneBook::PhoneBook() {
+	n_contact = 0;
+}
+
+PhoneBook::~PhoneBook() {
+
+}
+
+void PhoneBook::run() {
+	std::cout << "Welcome to PhoneBook\n\n";
+	while (true) {
+		choose_option();
+		switch (get_option()) {
+			case 1:
+				add_contact();
+				break;
+			case 2:
+				search_contact();
+				break;
+			case 3:
+				std::cout << "Exiting PhoneBook\n";
+				return;
+			default:
+				std::cout << "Invalid input\n";
+				break;
+		}
+		wait_for_next();
+	}
+}
+
+void PhoneBook::choose_option() {
 	std::cout << "Please choose an option below:\n";
 	std::cout << "ADD\n";
 	std::cout << "SEARCH\n";
 	std::cout << "EXIT\n";
+	std::cout << "\nYour choose : ";
 }
 
 int PhoneBook::get_option() {
@@ -57,6 +87,7 @@ void PhoneBook::search_contact() {
 		std::cout << "Enter name of existing contact : ";
 		std::cin >> name;
 	}
+	std::cout << "\n";
 	for (int i = 0; i < 8; i++) {
 		if (contacts[i].getName() == name)
 		{
@@ -64,33 +95,11 @@ void PhoneBook::search_contact() {
 			return ;
 		}
 	}
-	std::cout << "Contact : " + name + " not found";
+	std::cout << "Error : Contact : " + name + " not found\n";
 }
 
-PhoneBook::PhoneBook() {
-	n_contact = 0;
-}
-
-PhoneBook::~PhoneBook() {
-
-}
-
-void PhoneBook::run() {
-	while (true) {
-		welcome();
-		switch (get_option()) {
-			case 1:
-				add_contact();
-				break;
-			case 2:
-				search_contact();
-				break;
-			case 3:
-				std::cout << "Exiting PhoneBook\n";
-				return;
-			default:
-				std::cout << "Invalid input\n";
-				break;
-		}
-	}
+void PhoneBook::wait_for_next() {
+	std::cout << "\nDone. Press any key to continue\n";
+	std::getchar();
+	std::cout << "\n";
 }
