@@ -10,5 +10,6 @@ int	main()
 
 	phoneBook = PhoneBook();
 	phoneBook.run();
+	phoneBook.~PhoneBook();
 	return (0);
 }

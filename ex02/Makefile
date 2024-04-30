@@ -1,2 +1,2 @@
 all:
-	c++ -Wall -Wextra -Werror Account.cpp
+	c++ -Wall -Wextra -Werror Account.cpp tests.cpp
