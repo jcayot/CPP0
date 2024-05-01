@@ -9,8 +9,7 @@ PhoneBook::PhoneBook() {
 }
 
 PhoneBook::~PhoneBook() {
-	for (int i = 0; i < 8; i++)
-		contacts[i].~Contact();
+
 }
 
 void PhoneBook::run() {
@@ -73,9 +72,8 @@ std::string	PhoneBook::get_field(std::string fieldName) {
 	std::string	fieldContent;
 
 	while (fieldContent.empty()) {
-		std::cout << "Enter contact " + fieldName + " : ";
-		std::cin >> fieldContent;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		std::cout << "Enter contact " << fieldName << " : ";
+		std::getline(std::cin, fieldContent);
 	}
 	return (fieldContent);
 }
@@ -85,7 +83,7 @@ void PhoneBook::search_contact() {
 	int 		index;
 
 	for (int i = 0; i < 8 && !contacts[i].getFirstname().empty(); i++)
-		std::cout << std::to_string(i) + "|" + contacts[i].toString();
+		std::cout << std::to_string(i) << "|" << contacts[i].toString();
 
 	while (input.empty() || input.length() != 1 || input[0] < '0' || input[0] > '7') {
 		std::cout << "\nPlease enter the index of the contact you would like to display : ";
@@ -94,12 +92,12 @@ void PhoneBook::search_contact() {
 	}
 	index = std::atoi(input.data());
 	if (!contacts[index].getFirstname().empty()) {
-		std::cout << "\nContact information for index : " + std::to_string(index) + "\n"
-			+ "Firstname : " + contacts[index].getFirstname() + "\n"
-			+ "Lastname : " + contacts[index].getLastname() + "\n"
-			+ "Nickname : " + contacts[index].getNickname() + "\n"
-			+ "Number : " + contacts[index].getNumber() + "\n"
-			+ "Darkest secret : " + contacts[index].getDarkestSecret() + "\n";
+		std::cout << "\nContact information for index : " << std::to_string(index) << "\n"
+			<< "Firstname : " << contacts[index].getFirstname() << "\n"
+			<< "Lastname : " << contacts[index].getLastname() << "\n"
+			<< "Nickname : " + contacts[index].getNickname() << "\n"
+			<< "Number : " + contacts[index].getNumber() << "\n"
+			<< "Darkest secret : " + contacts[index].getDarkestSecret() << "\n";
 	} else
 		std::cout << "No entry for index : " + std::to_string(index);
 }
