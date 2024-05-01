@@ -59,55 +59,49 @@ int PhoneBook::get_option() {
 }
 
 void PhoneBook::add_contact() {
-	std::string	name;
-	std::string number;
-
+	std::string	firstname = get_field("firstname");
+	std::string lastname = get_field("lastname");
+	std::string nickname = get_field("nickname");
+	std::string	number = get_field("number");
+	std::string darkestSecret = get_field("darkestSecret");
 	if (n_contact == 8)
 		n_contact = 0;
-	name = "";
-	while (name.empty()) {
-		std::cout << "Enter contact name : ";
-		std::cin >> name;
+	contacts[n_contact] = Contact(firstname, lastname, nickname, number, darkestSecret);
+}
+
+std::string	PhoneBook::get_field(std::string fieldName) {
+	std::string	fieldContent;
+
+	while (fieldContent.empty()) {
+		std::cout << "Enter contact " + fieldName + " : ";
+		std::cin >> fieldContent;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
-	if (get_contact_index(name) == -1)
-	{
-		number = "";
-		while (number.empty()) {
-			std::cout << "Enter contact number : ";
-			std::cin >> number;
-			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-		}
-		contacts[n_contact] = Contact(name, number);
-		n_contact++;
-	}
-	else
-		std::cout << "Name " + name + " already used.\n";
+	return (fieldContent);
 }
-
-int PhoneBook::get_contact_index(std::string name) {
-	for (int i = 0; i < 8; i++) {
-		if (contacts[i].getName() == name)
-			return (i);
-	}
-	return (-1);
-}
-
 
 void PhoneBook::search_contact() {
-	std::string	name;
-	while (name.empty()) {
-		std::cout << "Enter name of existing contact : ";
-		std::cin >> name;
+	std::string	input;
+	int 		index;
+
+	for (int i = 0; i < 8 && !contacts[i].getFirstname().empty(); i++)
+		std::cout << std::to_string(i) + "|" + contacts[i].toString();
+
+	while (input.empty() || input.length() != 1 || input[0] < '0' || input[0] > '7') {
+		std::cout << "\nPlease enter the index of the contact you would like to display : ";
+		std::cin >> input;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
-	std::cout << "\n";
-
-	int contact_index = get_contact_index(name);
-	if (contact_index != -1)
-		std::cout << name + " Number is : " + contacts[contact_index].getNumber() + "\n";
-	else
-		std::cout << "Error : Contact : " + name + " not found\n";
+	index = std::atoi(input.data());
+	if (!contacts[index].getFirstname().empty()) {
+		std::cout << "\nContact information for index : " + std::to_string(index) + "\n"
+			+ "Firstname : " + contacts[index].getFirstname() + "\n"
+			+ "Lastname : " + contacts[index].getLastname() + "\n"
+			+ "Nickname : " + contacts[index].getNickname() + "\n"
+			+ "Number : " + contacts[index].getNumber() + "\n"
+			+ "Darkest secret : " + contacts[index].getDarkestSecret() + "\n";
+	} else
+		std::cout << "No entry for index : " + std::to_string(index);
 }
 
 void PhoneBook::wait_for_next() {

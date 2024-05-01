@@ -15,12 +15,12 @@ private:
 	Contact contacts[8];
 	int n_contact;
 
-	void	choose_option();
-	void	wait_for_next();
-	int		get_option();
-	void	add_contact();
-	void	search_contact();
-	int get_contact_index(std::string name);
+	void		choose_option();
+	std::string get_field(std::string fieldName);
+	void		wait_for_next();
+	int			get_option();
+	void		add_contact();
+	void		search_contact();
 
 public:
 	PhoneBook();
