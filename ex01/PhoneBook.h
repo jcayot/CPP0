@@ -20,6 +20,7 @@ private:
 	int		get_option();
 	void	add_contact();
 	void	search_contact();
+	int get_contact_index(std::string name);
 
 public:
 	PhoneBook();

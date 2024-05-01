@@ -9,9 +9,8 @@ PhoneBook::PhoneBook() {
 }
 
 PhoneBook::~PhoneBook() {
-	for (int i = 0; i < 8; ++i) {
+	for (int i = 0; i < 8; i++)
 		contacts[i].~Contact();
-	}
 }
 
 void PhoneBook::run() {
@@ -46,6 +45,7 @@ void PhoneBook::choose_option() {
 
 int PhoneBook::get_option() {
 	std::string input;
+
 	std::cin >> input;
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
@@ -65,46 +65,53 @@ void PhoneBook::add_contact() {
 	if (n_contact == 8)
 		n_contact = 0;
 	name = "";
-	while (name.empty())
-	{
+	while (name.empty()) {
 		std::cout << "Enter contact name : ";
 		std::cin >> name;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
-	number = "";
-	while (number.empty())
+	if (get_contact_index(name) == -1)
 	{
-		std::cout << "Enter contact number : ";
-		std::cin >> number;
-		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		number = "";
+		while (number.empty()) {
+			std::cout << "Enter contact number : ";
+			std::cin >> number;
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
+		contacts[n_contact] = Contact(name, number);
+		n_contact++;
 	}
-	contacts[n_contact] = Contact(name, number);
-	n_contact++;
+	else
+		std::cout << "Name " + name + " already used.\n";
 }
+
+int PhoneBook::get_contact_index(std::string name) {
+	for (int i = 0; i < 8; i++) {
+		if (contacts[i].getName() == name)
+			return (i);
+	}
+	return (-1);
+}
+
 
 void PhoneBook::search_contact() {
 	std::string	name;
-
-	while (name.empty())
-	{
+	while (name.empty()) {
 		std::cout << "Enter name of existing contact : ";
 		std::cin >> name;
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	}
 	std::cout << "\n";
-	for (int i = 0; i < 8; i++) {
-		if (contacts[i].getName() == name)
-		{
-			std::cout << name + " Number is : " + contacts[i].getNumber() + "\n";
-			return ;
-		}
-	}
-	std::cout << "Error : Contact : " + name + " not found\n";
+
+	int contact_index = get_contact_index(name);
+	if (contact_index != -1)
+		std::cout << name + " Number is : " + contacts[contact_index].getNumber() + "\n";
+	else
+		std::cout << "Error : Contact : " + name + " not found\n";
 }
 
 void PhoneBook::wait_for_next() {
 	std::cout << "\nDone. Press enter to continue\n";
-	std::cin.get();
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 	std::cout << "\n";
 }
