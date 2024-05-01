@@ -95,11 +95,11 @@ void PhoneBook::search_contact() {
 		std::cout << "\nContact information for index : " << std::to_string(index) << "\n"
 			<< "Firstname : " << contacts[index].getFirstname() << "\n"
 			<< "Lastname : " << contacts[index].getLastname() << "\n"
-			<< "Nickname : " + contacts[index].getNickname() << "\n"
-			<< "Number : " + contacts[index].getNumber() << "\n"
-			<< "Darkest secret : " + contacts[index].getDarkestSecret() << "\n";
+			<< "Nickname : " << contacts[index].getNickname() << "\n"
+			<< "Number : " << contacts[index].getNumber() << "\n"
+			<< "Darkest secret : " << contacts[index].getDarkestSecret() << "\n";
 	} else
-		std::cout << "No entry for index : " + std::to_string(index);
+		std::cout << "No entry for index : " << std::to_string(index);
 }
 
 void PhoneBook::wait_for_next() {
