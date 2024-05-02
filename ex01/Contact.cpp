@@ -50,3 +50,7 @@ std::string Contact::shortened(std::string str) {
 		return (str);
 	return (str.substr(0, 8) + ".");
 }
+
+Contact::~Contact() {
+
+}

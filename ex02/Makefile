@@ -1,4 +1,4 @@
-NAME = Account
+NAME = account
 CC = g++
 CFLAGS = -Wall -Wextra -Werror
 SRCS = Account.cpp tests.cpp

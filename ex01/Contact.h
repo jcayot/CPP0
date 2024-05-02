@@ -21,6 +21,7 @@ public:
 	Contact();
 	Contact(std::string firstname, std::string lastname, std::string nickname, std::string number,
 			std::string darkestSecret);
+	~Contact();
 
 	std::string getFirstname();
 	std::string getLastname();

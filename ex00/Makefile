@@ -1,4 +1,4 @@
-NAME = Megaphone
+NAME = megaphone
 CC = g++
 CFLAGS = -Wall -Wextra -Werror
 SRCS = Megaphone.cpp
