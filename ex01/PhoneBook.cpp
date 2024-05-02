@@ -66,6 +66,7 @@ void PhoneBook::add_contact() {
 	if (n_contact == 8)
 		n_contact = 0;
 	contacts[n_contact] = Contact(firstname, lastname, nickname, number, darkestSecret);
+	n_contact++;
 }
 
 std::string	PhoneBook::get_field(std::string fieldName) {
