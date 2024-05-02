@@ -84,7 +84,7 @@ void PhoneBook::search_contact() {
 	int 		index;
 
 	for (int i = 0; i < 8 && !contacts[i].getFirstname().empty(); i++)
-		std::cout << std::to_string(i) << "|" << contacts[i].toString();
+		std::cout << std::to_string(i) << "         |" << contacts[i].toString();
 
 	while (input.empty() || input.length() != 1 || input[0] < '0' || input[0] > '7') {
 		std::cout << "\nPlease enter the index of the contact you would like to display : ";

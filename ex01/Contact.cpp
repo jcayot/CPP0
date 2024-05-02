@@ -46,8 +46,14 @@ std::string Contact::toString() {
 }
 
 std::string Contact::shortened(std::string str) {
-	if (str.length() <= 10)
+	if (str.length() == 10)
 		return (str);
+	else if (str.length() < 10)
+	{
+		std::string	withSpaces;
+		withSpaces = str + "                 ";
+		return (withSpaces.substr(0, 10));
+	}
 	return (str.substr(0, 9) + ".");
 }
 
