@@ -48,7 +48,7 @@ std::string Contact::toString() {
 std::string Contact::shortened(std::string str) {
 	if (str.length() <= 10)
 		return (str);
-	return (str.substr(0, 8) + ".");
+	return (str.substr(0, 9) + ".");
 }
 
 Contact::~Contact() {
